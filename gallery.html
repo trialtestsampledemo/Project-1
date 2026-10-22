@@ -1,1 +1,68 @@
-test
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Gallery | Hello, world!</title>
+  <style>
+    :root { color-scheme:dark;--ink:#f4f2ff;--muted:#aaa9c4;--violet:#b49aff;--mint:#9ff3d2; }
+    * { box-sizing:border-box; }
+    body { margin:0;min-height:100svh;overflow-x:hidden;padding:7rem 1.25rem 5rem;color:var(--ink);background:radial-gradient(ellipse at 18% 20%,#523c91 0,transparent 34%),radial-gradient(ellipse at 82% 78%,#145d68 0,transparent 36%),linear-gradient(135deg,#090d19,#11172b 55%,#0b1020);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    body::before { content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E"); }
+    nav { position:fixed;z-index:2;top:1.25rem;left:50%;transform:translateX(-50%);display:flex;gap:.25rem;padding:.4rem;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(12,16,32,.72);backdrop-filter:blur(16px); }
+    nav a { padding:.65rem .9rem;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.85rem;white-space:nowrap;transition:color .2s,background .2s; }
+    nav a:hover,nav a[aria-current="page"] { color:var(--ink);background:rgba(255,255,255,.1); }
+    main { position:relative;width:min(100%,1080px);margin:0 auto;animation:rise .8s cubic-bezier(.2,.8,.2,1) both; }
+    header { margin:0 auto 2.5rem;text-align:center; }
+    .eyebrow { display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .9rem;margin-bottom:1.2rem;border:1px solid rgba(180,154,255,.32);border-radius:999px;background:rgba(180,154,255,.1);color:#d9cbff;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase; }
+    .spark { color:var(--mint); }
+    h1 { margin:0;font-size:clamp(3rem,9vw,6rem);line-height:1;letter-spacing:-.075em;font-weight:800; }
+    h1 span { display:block;color:transparent;background:linear-gradient(100deg,#d6c5ff 12%,#a99aff 48%,#9ff3d2 95%);-webkit-background-clip:text;background-clip:text; }
+    header p { max-width:36rem;margin:1.2rem auto 0;color:var(--muted);line-height:1.8; }
+    .grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem; }
+    figure { margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));box-shadow:0 20px 55px rgba(0,0,0,.2);transition:transform .25s,border-color .25s; }
+    figure:hover { transform:translateY(-5px);border-color:rgba(180,154,255,.42); }
+    .art { position:relative;display:grid;place-items:center;aspect-ratio:1.35;overflow:hidden; }
+    .art::before,.art::after { content:"";position:absolute;border-radius:50%; }
+    .art::before { width:56%;aspect-ratio:1;background:rgba(255,255,255,.24);filter:blur(1px); }
+    .art::after { width:32%;aspect-ratio:1;background:rgba(12,16,32,.28);transform:translate(70%,-55%); }
+    .art span { z-index:1;font-size:clamp(2.6rem,7vw,5rem);filter:drop-shadow(0 10px 18px rgba(0,0,0,.22)); }
+    .aurora { background:radial-gradient(ellipse at 18% 15%,#b79aff,transparent 43%),linear-gradient(145deg,#252352,#186b79); }
+    .sunset { background:radial-gradient(circle at 70% 32%,#ffe1a6 0 10%,transparent 10.5%),linear-gradient(155deg,#ed8b91,#7a4d91 58%,#252749); }
+    .botanical { background:radial-gradient(ellipse at 60% 25%,#b2edb5,transparent 20%),linear-gradient(145deg,#193d42,#5b896e 55%,#c0a778); }
+    .coast { background:linear-gradient(165deg,#f5b986 0 35%,#d77f82 35% 50%,#3b7790 50% 75%,#203f5c 75%); }
+    .dream { background:radial-gradient(circle at 30% 35%,#f6d1ff 0 5%,transparent 5.5%),radial-gradient(circle at 67% 62%,#d2c5ff 0 9%,transparent 9.5%),linear-gradient(140deg,#4c4088,#191d47); }
+    .morning { background:radial-gradient(circle at 50% 40%,#fff0be 0 12%,transparent 12.5%),linear-gradient(160deg,#c1e6db,#e5c5bb 55%,#6c7c9e); }
+    figcaption { padding:1rem 1.1rem 1.1rem; }
+    figcaption strong { display:block;font-size:.98rem; }
+    figcaption span { display:block;margin-top:.35rem;color:var(--muted);font-size:.85rem; }
+    footer { margin:2rem 0 0;text-align:center;color:rgba(220,220,240,.48);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase; }
+    @keyframes rise { from { opacity:0;transform:translateY(20px); }to { opacity:1;transform:translateY(0); } }
+    @media(max-width:720px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:480px) { body { padding-left:.85rem;padding-right:.85rem; }nav { max-width:96vw;gap:0;padding:.3rem; }nav a { padding:.6rem .65rem;font-size:.76rem; }.grid { gap:.7rem; }figcaption { padding:.8rem; }figcaption span { font-size:.78rem; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="contact%20us.html">Contact</a><a href="gallery.html" aria-current="page">Gallery</a>
+  </nav>
+  <main>
+    <header>
+      <div class="eyebrow"><span class="spark">✦</span> Little moments, collected</div>
+      <h1>A place for<span>pretty things</span></h1>
+      <p>A small collection of color, calm, and curious little moments. Take a breath and wander through.</p>
+    </header>
+    <section class="grid" aria-label="Gallery collection">
+      <figure><div class="art aurora" aria-hidden="true"><span>✧</span></div><figcaption><strong>After the rain</strong><span>Quiet skies, brighter colors</span></figcaption></figure>
+      <figure><div class="art sunset" aria-hidden="true"><span>☼</span></div><figcaption><strong>Golden hour</strong><span>The day’s softest goodbye</span></figcaption></figure>
+      <figure><div class="art botanical" aria-hidden="true"><span>❋</span></div><figcaption><strong>Growing gently</strong><span>A little green goes a long way</span></figcaption></figure>
+      <figure><div class="art coast" aria-hidden="true"><span>≈</span></div><figcaption><strong>Somewhere by the sea</strong><span>Let the tide set the pace</span></figcaption></figure>
+      <figure><div class="art dream" aria-hidden="true"><span>✦</span></div><figcaption><strong>Small universe</strong><span>Make room for wonder</span></figcaption></figure>
+      <figure><div class="art morning" aria-hidden="true"><span>☀</span></div><figcaption><strong>First light</strong><span>A fresh start, every day</span></figcaption></figure>
+    </section>
+    <footer>Made with a little ✦</footer>
+  </main>
+</body>
+</html>
