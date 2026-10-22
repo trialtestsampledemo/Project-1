@@ -19,7 +19,8 @@
       min-height: 100svh;
       display: grid;
       place-items: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      padding: 6rem 0 4rem;
       color: var(--ink);
       background:
         radial-gradient(ellipse at 18% 20%, #523c91 0, transparent 34%),
@@ -38,6 +39,9 @@
     .glow { position: fixed; width: 22rem; aspect-ratio: 1; border-radius: 50%; filter: blur(90px); opacity: .2; animation: drift 12s ease-in-out infinite alternate; }
     .glow.one { background: #a279ff; top: -10rem; left: -8rem; }
     .glow.two { background: #38dfb1; bottom: -13rem; right: -7rem; animation-delay: -5s; }
+    nav { position: fixed; z-index: 2; top: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; gap: .35rem; padding: .4rem; border: 1px solid rgba(255,255,255,.13); border-radius: 999px; background: rgba(12,16,32,.62); backdrop-filter: blur(16px); }
+    nav a { padding: .65rem 1rem; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s, background .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: var(--ink); background: rgba(255,255,255,.1); }
     main {
       position: relative;
       width: min(90vw, 760px);
@@ -97,6 +101,11 @@
     <p>A fresh page, a new beginning, and a whole world of possibilities waiting just beyond the cursor.</p>
     <div class="rule" aria-hidden="true"></div>
   </main>
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
   <footer>Made with a little ✦</footer>
 </body>
 </html>
